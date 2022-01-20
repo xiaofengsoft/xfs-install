@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/css/mdui.min.css" />
+  <title>
+    <?=$siteName; ?>安装引导
+  </title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .padding-lager {
+      padding: 10px 20%;
+      padding-top: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="mdui-container ">
+    <div class="mdui-row padding-lager">
+      <div class="mdui-col-xs-12">
+        <div class="mdui-panel" mdui-panel>
+          <div class="mdui-panel-item mdui-panel-item-open mdui-color-amber">
+            <div class="mdui-panel-item-header none-open" style="height: 1.5rem;"></div>
+            <div class="mdui-panel-item-body">
+              <img class="mdui-img-fluid mdui-shadow-12" src="miami.png" />
+            </div>
+          </div>
+          <div class="mdui-panel-item  mdui-panel-item-open mdui-ripple" id="database">
+            <div class="mdui-panel-item-header mdui-color-pink-accent mdui-shadow-6">Database</div>
+            <div class="mdui-panel-item-body mdui-color-grey-100">
+              <div class="mdui-textfield mdui-textfield-floating-label">
+                <label class="mdui-textfield-label">Hostname</label>
+                <input class="mdui-textfield-input" name="hostname" type="text" value="127.0.0.1" />
+              </div>
+              <div class="mdui-textfield mdui-textfield-floating-label">
+                <label class="mdui-textfield-label">Port</label>
+                <input class="mdui-textfield-input" name="port" type="text" value="3306" />
+              </div>
+              <div class="mdui-textfield mdui-textfield-floating-label">
+                <label class="mdui-textfield-label">Sql Type</label>
+                <input class="mdui-textfield-input" name="sql-type" type="text" value="mysql" />
+              </div>
+              <div class="mdui-textfield mdui-textfield-floating-label">
+                <label class="mdui-textfield-label">Username</label>
+                <input class="mdui-textfield-input" name="username" type="text" value="root" />
+              </div>
+              <div class="mdui-textfield mdui-textfield-floating-label">
+                <label class="mdui-textfield-label">Database</label>
+                <input class="mdui-textfield-input" name="database" type="text" />
+              </div>
+              <div class="mdui-textfield mdui-textfield-floating-label">
+                <label class="mdui-textfield-label">Password</label>
+                <input class="mdui-textfield-input" name="password" type="password" />
+              </div>
+              <div class="mdui-textfield mdui-textfield-floating-label">
+                <label class="mdui-textfield-label">Prefix</label>
+                <input class="mdui-textfield-input" name="prefix" type="text" value="xfs_" />
+              </div>
+
+              <div class="mdui-p-t-2">
+                <button class="mdui-btn mdui-btn-block mdui-color-pink-accent mdui-ripple mdui-shadow-4"
+                  id="step-skip">Next step</button>
+              </div>
+            </div>
+
+          </div>
+          <div class="mdui-panel-item  mdui-panel-item-open mdui-ripple" id="admin" style="display: none;">
+            <div class="mdui-panel-item-header mdui-color-pink-accent mdui-shadow-6">Administrator</div>
+            <div class="mdui-panel-item-body mdui-color-grey-100">
+              <div class="mdui-textfield mdui-textfield-floating-label">
+                <label class="mdui-textfield-label">Admin Username</label>
+                <input class="mdui-textfield-input" name="admin-username" type="text" value="admin" />
+              </div>
+              <div class="mdui-textfield mdui-textfield-floating-label">
+                <label class="mdui-textfield-label">Admin password</label>
+                <input class="mdui-textfield-input" name="admin-password" type="password" />
+              </div>
+              <div class="mdui-textfield mdui-textfield-floating-label">
+                <label class="mdui-textfield-label">Admin Password Again</label>
+                <input class="mdui-textfield-input" name="admin-password-again" type="password" />
+              </div>
+
+              <div class="mdui-p-t-2">
+                <div class="mdui-col-xs-6">
+                  <button class="mdui-btn mdui-btn-block mdui-color-pink-accent mdui-ripple mdui-shadow-4"
+                    id="step-back">Last step</button>
+                </div>
+                <div class="mdui-col-xs-6">
+                  <button class="mdui-btn mdui-btn-block mdui-color-pink-accent mdui-ripple mdui-shadow-4"
+                    id="install">Install</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="mdui-panel-item">
+            <div class="mdui-panel-item-header">
+              <div class="mdui-progress">
+                <div class="mdui-progress-determinate mdui-color-pink-accent" style="width: 30%;" id="progress">
+                </div>
+                <div class="mdui-progress" style="display: none;">
+                  <div class="mdui-progress-indeterminate" id="progress-loading"></div>
+                </div>
+              </div>
+            </div>
+            <div class="mdui-panel-item-body">
+              <p>Wait a moment please</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/js/mdui.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script type="text/javascript">
+    $("#step-skip").click(function () {
+      $("#database").hide('slow');
+      $("#admin").show('slow');
+      $("#progress").css('width', '60%');
+    });
+    $("#step-back").click(function () {
+      $("#database").show('slow');
+      $("#admin").hide('slow');
+      $("#progress").css('width', '30%');
+    });
+    $("#install").click(function () {
+      $("#progress-loading").show('slow');
+      $("#progress").hide('slow');
+      $("#install").attr('disabled', 'true');
+      $.ajax({
+        type: "POST",
+        url: "<?=DS;?>install.php",
+        data: {
+          "statu": 1,
+          "database": {
+            "hostname": $('input[name="hostname"]').val(),
+            "port": $('input[name="port"]').val(),
+            "sqlType": $('input[name="sql-type"]').val(),
+            "database": $('input[name="database"]').val(),
+            "username": $('input[name="username"]').val(),
+            "password": $('input[name="password"]').val(),
+            "prefix": $('input[name="prefix"]').val()
+          },
+          "admin": {
+            "username": $('input[name="admin-username"]').val(),
+            "password": $('input[name="admin-password"]').val(),
+            "passwordAgain": $('input[name="admin-password-again"]').val()
+          }
+        },
+        success: function (e) {
+          $("#progress-loading").hide('slow');
+          $("#progress").css('width', '100%');
+          $("#progress").show('slow');
+          mdui.dialog({
+            cssClass: "mdui-color-teal-accent",
+            title: e.title,
+            content: e.message,
+            buttons: [{
+              text: 'I see', onClick: function (inst) {
+              }
+            }]
+          });
+
+        },
+        dataType: "json"
+      });
+    });
+
+  </script>
+</body>
+
+</html>
