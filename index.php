@@ -96,8 +96,8 @@ if(!is_file('install.lock')){
             <p><kbd>XFS-Install</kbd>是XFS-小风创作的专注于安装含有SQL文件的程序,因为许多中小型程序都需要进行MySql安装,因此我开发了此款程序</p>
         </div>
         <div id="download" class="mdui-typo">
-            <h3 class="title mdui-text-color-pink-400"><b>下载</b></h3>
-            <p><kbd class="mdui-color-red-a400">Gitee下载</kbd> </p>
+            <h3 class="title mdui-text-color-pink-400"><b>下载</b> https://github.com/xiaofengsoft/xfs-install</h3>
+            <p><kbd class="mdui-color-red-a400">Gitee下载</kbd> https://gitee.com/xiaofengsb/xfs-install</p>
             <p><kbd>GitHub下载</kbd> </p>
         </div>
         <div id="install" class="mdui-typo">
